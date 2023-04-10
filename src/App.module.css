@@ -1,9 +1,10 @@
 .container {
   margin: 30px auto;
-  max-width: 950px;
+  max-width: 1000px;
   background: #ffff;
   border-radius: 4px;
 }
 .textCenter {
   text-align: center;
 }
+
