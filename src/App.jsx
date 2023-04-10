@@ -1,18 +1,18 @@
 import React from "react";
-import styles from "./Global.module.css";
-import { read, utils } from "xlsx";
+import styles from "./App.module.css";
+import * as XLSX from "xlsx";
 
 function App() {
-  console.log(import.meta.env.VITE_DATA_PATH);
-  const [data, setData] = React.useState(null);
+  const [data, setData] = React.useState([]);
+
   async function fetchData() {
-    const file = await fetch("../base.xlsx");
-    const buff = await file.arrayBuffer();
-    const data = read(buff, { type: "buffer" });
-    const sheet = data.Sheets[data.SheetNames[0]];
-    const json = utils.sheet_to_json(sheet);
-    console.log(json);
-    setData(json);
+    const promiss = await fetch("base.xlsx");
+    const buff = await promiss.arrayBuffer();
+    const workbook = XLSX.readFile(buff, { type: "buffer" });
+    const worksheet = workbook.Sheets[workbook.SheetNames[0]];
+    const rows = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+    setData(rows);
+    console.log(rows);
   }
 
   React.useEffect(() => {
@@ -20,11 +20,35 @@ function App() {
   }, []);
 
   return (
-    <>
-      <div className={styles.teste}>
-        {data && data.map((e) => <p key={e.Documento}>{e.Documento}</p>)}
-      </div>
-    </>
+    <div className={styles.container}>
+      <table className={styles.textCenter}>
+        <tbody>
+          {data &&
+            data.map((row, i) => {
+              if (i === 0) {
+                return (
+                  <tr key={i}>
+                    {row.map((cell, j) => (
+                      <th key={j}>{cell}</th>
+                    ))}
+                  </tr>
+                );
+              } else {
+                return (
+                  <tr key={i}>
+                    <span>
+                      <input type="checkbox" name="" id="" />
+                    </span>
+                    {row.map((cell, j) => (
+                      <td key={j}>{cell}</td>
+                    ))}
+                  </tr>
+                );
+              }
+            })}
+        </tbody>
+      </table>
+    </div>
   );
 }
 

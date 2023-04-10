@@ -1,0 +1,9 @@
+.container {
+  margin: 30px auto;
+  max-width: 950px;
+  background: #ffff;
+  border-radius: 4px;
+}
+.textCenter {
+  text-align: center;
+}
