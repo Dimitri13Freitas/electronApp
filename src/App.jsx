@@ -3,10 +3,10 @@ import styles from "./Global.module.css";
 import { read, utils } from "xlsx";
 
 function App() {
+  console.log(import.meta.env.VITE_DATA_PATH);
   const [data, setData] = React.useState(null);
-
   async function fetchData() {
-    const file = await fetch("./base.xlsx");
+    const file = await fetch("../base.xlsx");
     const buff = await file.arrayBuffer();
     const data = read(buff, { type: "buffer" });
     const sheet = data.Sheets[data.SheetNames[0]];

@@ -1,4 +1,6 @@
+// import dotenv from "dotenv";
 import { defineConfig } from "vite";
+// dotenv.config();
 import react from "@vitejs/plugin-react";
 
 // https://vitejs.dev/config/
