@@ -1,10 +1,28 @@
 .container {
-  margin: 30px auto;
-  max-width: 1000px;
+  margin: 30px 30px;
+  display: inline-block;
   background: #ffff;
-  border-radius: 4px;
+  border-radius: 8px;
+  padding: 25px 30px;
 }
 .textCenter {
   text-align: center;
+}
+td {
+  padding: 10px 20px;
+}
+.borderNone {
+  border-left: none !important;
+}
+th {
+  border-bottom: 2px solid #141414;
+  padding: 10px 20px;
+}
+th:nth-child(odd) {
+  border-left: 2px solid #141414;
+  border-right: 2px solid #141414;
+}
+input[type="checkbox"] {
+  margin: 30px 20px 30px 20px;
 }
 
